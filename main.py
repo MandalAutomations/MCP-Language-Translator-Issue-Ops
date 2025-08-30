@@ -2,7 +2,7 @@ import os
 import sys
 from openai import OpenAI
 
-token = os.environ["GITHUB_TOKEN"]
+token = os.environ["GH_TOKEN"]
 endpoint = "https://models.github.ai/inference"
 model = "openai/gpt-5-mini"
 
