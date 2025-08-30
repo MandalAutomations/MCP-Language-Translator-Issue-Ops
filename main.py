@@ -10,9 +10,9 @@ user_input = sys.argv[1] if len(sys.argv) > 1 else None
 if not user_input:
     print("No prompt provided.")
     sys.exit(1)
-    
-source_lang="English"
-target_lang="French"
+
+source_lang=os.environ.get("source_language", "English")
+target_lang=os.environ.get("target_language", "French")
 
 prompt=f"Translate the following {source_lang} text to {target_lang}: {user_input}"
 

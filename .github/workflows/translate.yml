@@ -1,12 +1,14 @@
 name: Run Translator
 
 on:
-    workflow_dispatch: 
-     inputs:
-       text:
-         description: 'Text to translate'
-         required: true
-         default: 'Hello, how are you?'
+    workflow_dispatch:
+      inputs:
+        text:
+          description: 'Text to translate'
+          required: true
+          default: 'Hello, how are you?'
+    issue_comment:
+      types: [created]
 
 jobs:
   run-translator:
@@ -26,4 +28,16 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          python main.py "${{ github.event.inputs.text }}"
+          if [ "${{ github.event_name }}" = "issue_comment" ]; then
+            # Extract comment body and issue title using GitHub CLI
+            gh api repos/${{ github.repository }}/issues/${{ github.event.issue.number }} | jq -r '.title' > issue_title.txt
+            gh api repos/${{ github.repository }}/issues/comments/${{ github.event.comment.id }} | jq -r '.body' > comment_body.txt
+            issue_title=$(cat issue_title.txt)
+            comment_body=$(cat comment_body.txt)
+            # Only run if issue title matches translation template
+            if [[ "$issue_title" == Translation:* ]]; then
+              python main.py "$comment_body"
+            fi
+          else
+            python main.py "${{ github.event.inputs.text }}"
+          fi
