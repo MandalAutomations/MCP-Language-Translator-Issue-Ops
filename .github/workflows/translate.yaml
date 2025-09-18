@@ -24,6 +24,12 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+
+      - name: Parse issue body to env
+        if: github.event_name == 'issue_comment'
+        run: |
+          echo "${{ github.event.issue.body }}" | python parse_issue.py
+          
       - name: Run main.py
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
