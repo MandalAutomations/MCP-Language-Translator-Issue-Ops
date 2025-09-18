@@ -13,6 +13,8 @@ if not user_input:
 
 source_lang=os.environ.get("source_language", "English")
 target_lang=os.environ.get("target_language", "French")
+print("source_lang: ", source_lang)
+print("target_lang: ", target_lang)
 
 prompt=f"Translate the following {source_lang} text to {target_lang}: {user_input}"
 
