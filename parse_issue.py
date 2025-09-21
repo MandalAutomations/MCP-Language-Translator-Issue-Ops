@@ -7,8 +7,8 @@ body = sys.stdin.read()
 source_lang = re.search(r'source_lang:\s*(.+)', body)
 target_lang = re.search(r'target_lang:\s*(.+)', body)
       
-print('SOURCE_LANG={source_lang.group(1).strip()}\n')
-print('TARGET_LANG={target_lang.group(1).strip()}\n')
+print(f'SOURCE_LANG={source_lang.group(1).strip()}\n')
+print(f'TARGET_LANG={target_lang.group(1).strip()}\n')
 
 github_env = os.environ.get('GITHUB_ENV')
 if github_env:
