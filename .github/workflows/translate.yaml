@@ -29,6 +29,8 @@ jobs:
         if: github.event_name == 'issue_comment'
         run: |
           echo "${{ github.event.issue.body }}" | python parse_issue.py
+          echo "SOURCE_LANG=$SOURCE_LANG"  # Debugging line to print SOURCE_LANG
+          echo "TARGET_LANG=$TARGET_LANG"  # Debugging line to print TARGET_LANG
           
       - name: Run main.py
         env:
