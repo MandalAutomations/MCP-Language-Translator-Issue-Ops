@@ -6,13 +6,11 @@ body = sys.stdin.read()
 
 source_lang = re.search(r'source_lang:\s*(.+)', body)
 target_lang = re.search(r'target_lang:\s*(.+)', body)
-
-print(f"Parsed source_lang: {source_lang.group(1).strip() if source_lang else 'None'}")
-print(f"Parsed target_lang: {target_lang.group(1).strip() if target_lang else 'None'}")
       
+print('SOURCE_LANG={source_lang.group(1).strip()}\n')
+print('TARGET_LANG={target_lang.group(1).strip()}\n')
+
 github_env = os.environ.get('GITHUB_ENV')
-if github_env:
-    print("Ran in GitHub Actions environment, writing to GITHUB_ENV")
 if github_env:
 	with open(github_env, 'a') as env_file:
 		if source_lang:
