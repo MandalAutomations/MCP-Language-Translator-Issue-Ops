@@ -37,6 +37,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           if [ "${{ github.event_name }}" = "issue_comment" ]; then
+            echo "${{ github.event.issue.body }}" | python parse_issue.py
             # Extract comment body and issue title using GitHub CLI
             gh api repos/${{ github.repository }}/issues/${{ github.event.issue.number }} | jq -r '.title' > issue_title.txt
             gh api repos/${{ github.repository }}/issues/comments/${{ github.event.comment.id }} | jq -r '.body' > comment_body.txt

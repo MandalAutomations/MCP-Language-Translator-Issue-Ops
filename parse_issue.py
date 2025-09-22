@@ -17,6 +17,3 @@ if github_env:
         if target_lang:
             print(f'TARGET_LANG={target_lang.group(1).strip()}')
             env_file.write(f'TARGET_LANG={target_lang.group(1).strip()}\n')
-
-print("SOURCE_LANG=$SOURCE_LANG DEBUG")
-print("TARGET_LANG=$TARGET_LANG DEBUG")
