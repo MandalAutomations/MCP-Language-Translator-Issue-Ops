@@ -29,9 +29,6 @@ jobs:
         if: github.event_name == 'issue_comment'
         run: |
           echo "${{ github.event.issue.body }}" | python parse_issue.py
-          echo "SOURCE_LANG=$SOURCE_LANG DEBUG"  # Debugging line to print SOURCE_LANG
-          echo "TARGET_LANG=$TARGET_LANG DEBUG"  # Debugging line to print TARGET_LANG
-
 
       - name: Run main.py
         env:
@@ -44,8 +41,6 @@ jobs:
             comment_body=$(cat comment_body.txt)
    
             if [[ "$issue_title" == Translation:* ]]; then
-              # python main.py "$comment_body"
-              # # Update the comment with the original prompt and translation
               original_text="$comment_body"
               translation_output=$(python main.py "$comment_body")
               new_comment_body="**Original:** $original_text
