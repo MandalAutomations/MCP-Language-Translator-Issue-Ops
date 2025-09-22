@@ -32,6 +32,8 @@ jobs:
           echo "SOURCE_LANG=$SOURCE_LANG DEBUG"  # Debugging line to print SOURCE_LANG
           echo "TARGET_LANG=$TARGET_LANG DEBUG"  # Debugging line to print TARGET_LANG
 
+          echo "$GITHUB_ENV"
+
       - name: Run main.py
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
