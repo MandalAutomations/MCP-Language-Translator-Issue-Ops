@@ -13,7 +13,7 @@ if github_env:
         print("Ran in GitHub Actions environment, writing to GITHUB_ENV")
         # if source_lang:
         #     print(f'SOURCE_LANG={source_lang.group(1).strip()}')
-        env_file.write(f'SOURCE_LANG={source_lang.group(1).strip()}\n')
+        env_file.write(f'source_language={source_lang.group(1).strip()}\n')
         if target_lang:
-            print(f'TARGET_LANG={target_lang.group(1).strip()}')
-            env_file.write(f'TARGET_LANG={target_lang.group(1).strip()}\n')
+            print(f'target_language={target_lang.group(1).strip()}')
+            env_file.write(f'target_language={target_lang.group(1).strip()}\n')
